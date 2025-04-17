@@ -2,4 +2,80 @@
 https://arxiv.org/
 
 
+sudo adduser имя_пользователя
+sudo usermod -aG sudo имя_пользователя
 
+
+sudo apt update & sudo apt upgrade -y
+
+
+установка poetry в репозитории 
+curl -sSL https://install.python-poetry.org | python3 -
+export PATH="/home/Созданный юзер/.local/bin:$PATH"
+echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc
+source ~/.bashrc
+
+poetry --version
+
+инициализация
+poetry init
+
+Надо указать в начале
+python = ">=3.12,<3.13"
+
+скачиваем библиотеки из requirements
+poetry add $(xargs < requirements.txt)
+
+poetry self add poetry-plugin-shell
+
+запуск виртуального окружения
+poetry shell
+
+
+
+Установка Docker
+sudo apt install -y apt-transport-https ca-certificates curl software-properties-common
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/trusted.gpg.d/docker.gpg
+echo "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" \
+  | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+
+sudo apt update
+sudo apt install -y docker-ce
+
+Добавить себя в группу docker (чтобы не писать sudo)
+sudo usermod -aG docker $USER
+newgrp docker
+
+# Установка Docker Compose (v2)
+sudo apt install -y docker-compose-plugin
+
+
+mkdir fastapi-postgres && cd fastapi-postgres
+
+в fastapi-postgres  сделать mkdir app  потом cd app потом  touch main.py requirements.txt Dockerfile
+
+mkdir streamlit_app
+cd streamlit_app
+touch app.py requirements.txt Dockerfile
+
+sudo ufw allow 5432,8000,8501,8080/tcp
+
+
+docker compose up -d --build
+docker ps
+
+проверка постгреса 
+docker exec -it 9ab9a72c8b9f psql -U myuser -d mydb
+
+
+
+Консоль постгри
+http://92.242.60.158:8080/browser/
+
+Fast API
+http://92.242.60.158:8000
+
+streamlit_app
+http://92.242.60.158:8501
+
+Всё доступно по локальным портам
