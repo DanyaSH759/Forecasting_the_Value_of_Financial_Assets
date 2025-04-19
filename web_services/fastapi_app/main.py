@@ -1,20 +1,17 @@
+import os
 from fastapi import FastAPI
 import psycopg2
 
 app = FastAPI()
 
-@app.get("/")
-def read_root():
-    return {"message": "FastAPI is running"}
-
 @app.get("/db-check")
 def db_check():
     try:
         conn = psycopg2.connect(
-            host="db",
-            database="mydb",
-            user="myuser",
-            password="mypassword"
+            host=os.getenv("POSTGRES_HOST"),
+            database=os.getenv("POSTGRES_DB"),
+            user=os.getenv("POSTGRES_USER"),
+            password=os.getenv("POSTGRES_PASSWORD")
         )
         cur = conn.cursor()
         cur.execute("SELECT 1;")

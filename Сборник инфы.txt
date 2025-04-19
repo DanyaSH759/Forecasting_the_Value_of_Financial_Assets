@@ -6,7 +6,8 @@ sudo adduser имя_пользователя
 sudo usermod -aG sudo имя_пользователя
 
 
-sudo apt update & sudo apt upgrade -y
+sudo apt update
+sudo apt upgrade -y
 
 
 установка poetry в репозитории 
@@ -17,8 +18,11 @@ source ~/.bashrc
 
 poetry --version
 
-инициализация
+инициализация 
 poetry init
+или
+poetry install если уже есть файлы
+
 
 Надо указать в начале
 python = ">=3.12,<3.13"
@@ -70,12 +74,23 @@ docker exec -it 9ab9a72c8b9f psql -U myuser -d mydb
 
 
 Консоль постгри
-http://92.242.60.158:8080/browser/
+http://89.111.175.1718:8080/browser/
 
 Fast API
-http://92.242.60.158:8000
+http://89.111.175.171:8000/docs
 
 streamlit_app
-http://92.242.60.158:8501
+http://89.111.175.171:8501
 
 Всё доступно по локальным портам
+
+
+
+
+deactivate
+logout
+
+
+
+sudo mkdir -p /etc/docker
+echo '{ "dns": ["8.8.8.8", "1.1.1.1"] }' | sudo tee /etc/docker/daemon.json
