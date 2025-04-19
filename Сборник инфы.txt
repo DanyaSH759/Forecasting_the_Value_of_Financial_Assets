@@ -71,16 +71,21 @@ docker ps
 проверка постгреса 
 docker exec -it 9ab9a72c8b9f psql -U myuser -d mydb
 
+ЕСЛИ КОНТЕЙНЕР НЕ МОЖЕТ СКАЧАТЬ ПАКЕТЫ
+в каждой папке где есть requirements
+mkdir deps
+и дальше качаем в ручную
+pip3 download -d deps -r requirements.txt --index-url https://pypi.tuna.tsinghua.edu.cn/simple
 
 
 Консоль постгри
-http://89.111.175.1718:8080/browser/
+http://89.104.67.203:8080/browser/
 
 Fast API
-http://89.111.175.171:8000/docs
+http://89.104.67.203:8000/docs
 
 streamlit_app
-http://89.111.175.171:8501
+http://89.104.67.203:8501
 
 Всё доступно по локальным портам
 
@@ -92,5 +97,6 @@ logout
 
 
 
-sudo mkdir -p /etc/docker
-echo '{ "dns": ["8.8.8.8", "1.1.1.1"] }' | sudo tee /etc/docker/daemon.json
+sudo docker stop $(sudo docker ps -aq)
+sudo docker rm $(sudo docker ps -aq)
+sudo docker rmi -f $(sudo docker images -q)

@@ -1,8 +1,12 @@
-FROM python:3.11
+FROM python:3.12
 
 WORKDIR /app
 COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+COPY deps /deps
+# RUN pip install --no-cache-dir -r requirements.txt \
+#     --index-url https://pypi.tuna.tsinghua.edu.cn/simple
+# Устанавливаем из локальной папки (без интернета)
+RUN pip install --no-index --find-links=/deps -r requirements.txt
 COPY . .
 
 EXPOSE 8501

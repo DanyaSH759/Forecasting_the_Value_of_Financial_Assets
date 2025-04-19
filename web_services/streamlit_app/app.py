@@ -1,22 +1,44 @@
 import streamlit as st
 import requests
-import os
 
-st.title("📈 PostgreSQL + FastAPI + Streamlit")
+st.set_page_config(page_title="Финансовая панель", layout="wide")
 
-api_host = os.getenv("API_HOST", "api")
+# Боковая панель с навигацией
+page = st.sidebar.selectbox("Выберите раздел", ["📊 Главная", "📤 Загрузка в БД"])
 
-try:
-    response = requests.get(f"http://{api_host}:8000/db-check")
-    if response.status_code == 200:
-        data = response.json()
-        if data.get("db_status") == "ok":
-            st.success("✅ Connected to PostgreSQL!")
-            st.write("Result:", data.get("result"))
+if page == "📊 Главная":
+    st.title("📈 Добро пожаловать в Streamlit-дэшборд")
+    st.write("Здесь будет основная аналитика, графики и так далее.")
+
+elif page == "📤 Загрузка в БД":
+    st.title("📤 Загрузка CSV-файла в базу данных")
+
+    asset = st.selectbox("Выберите актив", ["Криптовалюты", "Нефтеные фьючерсы", "Акции метталургических компаний", "Акции нефтедобывающих компаний", "Спотовы цена на драгоценные металы"])
+    uploaded_file = st.file_uploader("Загрузите CSV-файл", type=["csv"])
+
+    if uploaded_file is not None:
+        df_preview = uploaded_file.getvalue().decode("utf-8")
+        # st.subheader("📄 Предпросмотр данных:")
+        # st.dataframe(df_preview)
+
+    if st.button("Загрузить в базу"):
+        if uploaded_file is not None:
+            try:
+                files = {"file": (uploaded_file.name, uploaded_file.getvalue())}
+                data = {"asset": asset}
+                response = requests.post("http://api:8000/upload-csv", files=files, data=data)
+
+                if response.status_code == 200:
+                    result = response.json()
+                    st.success("✅ CSV загружен в базу данных!")
+                    st.write("Загружено строк:", result.get("rows"))
+                    st.write("Типы данных:", result.get("dtypes"))
+                else:
+                    st.error(f"❌ Ошибка: {response.status_code}")
+                    st.text(response.text)
+            except Exception as e:
+                st.error(f"Ошибка при обращении к API: {e}")
         else:
-            st.warning("⚠️ DB connection failed.")
-            st.write(data)
-    else:
-        st.error(f"API returned error status: {response.status_code}")
-except Exception as e:
-    st.error(f"❌ Error contacting FastAPI: {e}")
+            st.warning("⚠️ Сначала загрузите файл")
+
+        
