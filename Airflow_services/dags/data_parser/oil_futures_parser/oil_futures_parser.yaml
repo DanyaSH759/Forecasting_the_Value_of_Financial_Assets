@@ -1,0 +1,3 @@
+oil_futures:
+  CL=F: wti_futures
+  BZ=F: brent_futures

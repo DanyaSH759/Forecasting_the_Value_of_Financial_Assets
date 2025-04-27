@@ -1,0 +1,29 @@
+{
+    "bitcoin": {
+      "schema_table": "crypto.bitcoin",
+      "experiment_name": "bitcoin_model",
+      "artifact_path": "bitcoin_model",
+      "s3_key": "all_models/bitcoin_model/model.pkl",
+      "best_params": {
+        "n_estimators": 239,
+        "learning_rate": 0.04063717639143676,
+        "max_depth": 4,
+        "subsample": 0.6303381907682958,
+        "min_samples_split": 7,
+        "min_samples_leaf": 5} 
+    },
+    "ethereum": {
+        "schema_table": "crypto.ethereum",
+        "experiment_name": "ethereum_model",
+        "artifact_path": "ethereum_model",
+        "s3_key": "all_models/ethereum_model/model.pkl",
+        "best_params": {
+            "n_estimators": 239,
+            "learning_rate": 0.04063717639143676,
+            "max_depth": 4,
+            "subsample": 0.6303381907682958,
+            "min_samples_split": 7,
+            "min_samples_leaf": 5}
+        } 
+}
+  
