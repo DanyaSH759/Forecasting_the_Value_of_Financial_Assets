@@ -6,7 +6,8 @@ sudo adduser имя_пользователя
 sudo usermod -aG sudo имя_пользователя
 
 
-sudo apt update & sudo apt upgrade -y
+sudo apt update
+sudo apt upgrade -y
 
 
 установка poetry в репозитории 
@@ -17,8 +18,11 @@ source ~/.bashrc
 
 poetry --version
 
-инициализация
+инициализация 
 poetry init
+или
+poetry install если уже есть файлы
+
 
 Надо указать в начале
 python = ">=3.12,<3.13"
@@ -67,15 +71,40 @@ docker ps
 проверка постгреса 
 docker exec -it 9ab9a72c8b9f psql -U myuser -d mydb
 
+ЕСЛИ КОНТЕЙНЕР НЕ МОЖЕТ СКАЧАТЬ ПАКЕТЫ
+в каждой папке где есть requirements
+mkdir deps
+и дальше качаем в ручную
+pip3 download -d deps -r requirements.txt --index-url https://pypi.tuna.tsinghua.edu.cn/simple
 
 
 Консоль постгри
-http://92.242.60.158:8080/browser/
+http://89.104.67.203:8080/browser/
 
 Fast API
-http://92.242.60.158:8000
+http://89.104.67.203:8000/docs
 
 streamlit_app
-http://92.242.60.158:8501
+http://89.104.67.203:8501
 
 Всё доступно по локальным портам
+
+
+
+
+deactivate
+logout
+
+
+
+sudo docker stop $(sudo docker ps -aq)
+sudo docker rm $(sudo docker ps -aq)
+sudo docker rmi -f $(sudo docker images -q)
+
+
+
+Поднимаем MLops сервис
+
+из папки MLops
+запуск с логами
+docker compose -f docker-compose.yml up
