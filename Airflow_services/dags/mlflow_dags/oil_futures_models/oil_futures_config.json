@@ -1,0 +1,29 @@
+{
+    "wti_futures": {
+      "schema_table": "oil_futures.wti_futures",
+      "experiment_name": "wti_futures_model",
+      "artifact_path": "wti_futures_model",
+      "s3_key": "all_models/wti_futures_model/model.pkl",
+      "best_params": {
+        "n_estimators": 131,
+        "learning_rate": 0.04657799151285184,
+        "max_depth": 5,
+        "subsample": 0.5026939851981022,
+        "min_samples_split": 10,
+        "min_samples_leaf": 2} 
+    },
+    "brent_futures": {
+        "schema_table": "oil_futures.brent_futures",
+        "experiment_name": "brent_futures_model",
+        "artifact_path": "brent_futures_model",
+        "s3_key": "all_models/brent_futures_model/model.pkl",
+        "best_params": {
+            "n_estimators": 297,
+            "learning_rate": 0.019697172771786824,
+            "max_depth": 5,
+            "subsample": 0.9105318359955741,
+            "min_samples_split": 10,
+            "min_samples_leaf": 3}
+        } 
+}
+  

@@ -1,0 +1,29 @@
+{
+    "baoshan_iron": {
+      "schema_table": "metals_share.baoshan_iron",
+      "experiment_name": "baoshan_iron_model",
+      "artifact_path": "baoshan_iron_model",
+      "s3_key": "all_models/baoshan_iron_model/model.pkl",
+      "best_params": {
+        "n_estimators": 156,
+        "learning_rate": 0.06267709307510576,
+        "max_depth": 4,
+        "subsample": 0.5035597846532046,
+        "min_samples_split": 6,
+        "min_samples_leaf": 5} 
+    },
+    "jiangxi_copper": {
+        "schema_table": "metals_share.jiangxi_copper",
+        "experiment_name": "jiangxi_copper_model",
+        "artifact_path": "jiangxi_copper_model",
+        "s3_key": "all_models/jiangxi_copper_model/model.pkl",
+        "best_params": {
+            "n_estimators": 259,
+            "learning_rate": 0.0394105112768372,
+            "max_depth": 5,
+            "subsample": 0.552561648631057,
+            "min_samples_split": 6,
+            "min_samples_leaf": 4}
+        } 
+}
+  

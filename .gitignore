@@ -4,3 +4,6 @@ data
 plots
 __pycache__
 deps
+logs
+.env
+Сборник_инфы.txt
