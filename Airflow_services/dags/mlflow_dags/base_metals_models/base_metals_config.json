@@ -5,12 +5,11 @@
       "artifact_path": "gold_model",
       "s3_key": "all_models/gold_model/model.pkl",
       "best_params": {
-        "n_estimators": 204,
-        "learning_rate": 0.1268403693573627,
-        "max_depth": 5,
-        "subsample": 0.9800432421707393,
-        "min_samples_split": 10,
-        "min_samples_leaf": 5} 
+        "n_estimators": 84,
+        "learning_rate": 0.2613202764849248,
+        "max_depth": 4,
+        "num_leaves": 121,
+        "min_child_samples": 13}
     },
     "silver": {
         "schema_table": "base_metals.silver",
@@ -18,12 +17,11 @@
         "artifact_path": "silver_model",
         "s3_key": "all_models/silver_model/model.pkl",
         "best_params": {
-            "n_estimators": 115,
-            "learning_rate": 0.09806877494951677,
-            "max_depth": 3,
-            "subsample": 0.9694407158555054,
-            "min_samples_split": 8,
-            "min_samples_leaf": 3}
+            "n_estimators": 154,
+            "learning_rate": 0.04394280207031388,
+            "max_depth": 9,
+            "num_leaves": 17,
+            "min_child_samples": 13}
         } 
 }
   

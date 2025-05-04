@@ -5,12 +5,11 @@
       "artifact_path": "equinor_model",
       "s3_key": "all_models/equinor_model/model.pkl",
       "best_params": {
-        "n_estimators": 198,
-        "learning_rate": 0.01772662146657037,
+        "n_estimators": 148,
+        "learning_rate": 0.022906413238095946,
         "max_depth": 5,
-        "subsample": 0.547998707044669,
-        "min_samples_split": 10,
-        "min_samples_leaf": 5} 
+        "num_leaves": 73,
+        "min_child_samples": 22}
     },
     "petrochina": {
         "schema_table": "oil_share.petrochina",
@@ -18,12 +17,11 @@
         "artifact_path": "petrochina_model",
         "s3_key": "all_models/petrochina_model/model.pkl",
         "best_params": {
-            "n_estimators": 235,
-            "learning_rate": 0.06285259962656568,
-            "max_depth": 3,
-            "subsample": 0.5999152942625238,
-            "min_samples_split": 5,
-            "min_samples_leaf": 2}
+            "n_estimators": 153,
+            "learning_rate": 0.054276399679638106,
+            "max_depth": 7,
+            "num_leaves": 136,
+            "min_child_samples":22}
         } 
 }
   
