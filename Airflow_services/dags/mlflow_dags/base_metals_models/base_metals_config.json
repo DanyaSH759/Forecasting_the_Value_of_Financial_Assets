@@ -1,27 +1,31 @@
 {
     "gold": {
-      "schema_table": "base_metals.gold",
+      "schema_table": "base_metals.\"Gold\"",
       "experiment_name": "gold_model",
-      "artifact_path": "gold_model",
-      "s3_key": "all_models/gold_model/model.pkl",
+      "artifact_path": "Gold",
+      "s3_key": "all_models/Gold/model.pkl",
       "best_params": {
-        "n_estimators": 84,
-        "learning_rate": 0.2613202764849248,
-        "max_depth": 4,
-        "num_leaves": 121,
-        "min_child_samples": 13}
+        "hidden_size": 219,
+        "num_layers": 1,
+        "dropout":  0.2908311773478998,
+        "lr": 0.0015684231181917073,
+        "seq_len": 6},
+        "epochs": 10,
+        "full_learn": false
     },
     "silver": {
-        "schema_table": "base_metals.silver",
+        "schema_table": "base_metals.\"Silver\"",
         "experiment_name": "silver_model",
-        "artifact_path": "silver_model",
-        "s3_key": "all_models/silver_model/model.pkl",
+        "artifact_path": "Silver",
+        "s3_key": "all_models/Silver/model.pkl",
         "best_params": {
-            "n_estimators": 154,
-            "learning_rate": 0.04394280207031388,
-            "max_depth": 9,
-            "num_leaves": 17,
-            "min_child_samples": 13}
+            "hidden_size": 157,
+            "num_layers": 1,
+            "dropout":  0.17053855163576737,
+            "lr": 0.0001086892714804816,
+            "seq_len": 16},
+            "epochs": 10,
+        "full_learn": false
         } 
 }
   

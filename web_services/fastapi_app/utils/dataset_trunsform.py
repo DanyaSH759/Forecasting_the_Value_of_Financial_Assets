@@ -5,7 +5,7 @@ import numpy as np
 def clean_ohlcv_dataframe(df: pd.DataFrame) -> pd.DataFrame:
     close_col = [col for col in df.columns if col.startswith('Close_')]
     if not close_col:
-        raise ValueError("Не найдена колонка с Close_")
+        raise ValueError(f"Не найдена колонка с Close_ в: {df.columns}")
     ticker = close_col[0].split('_')[1]
 
     rename_map = {
@@ -24,7 +24,7 @@ def clean_ohlcv_dataframe(df: pd.DataFrame) -> pd.DataFrame:
 
 def transform_data(data):
 
-    rename_map = { 'Date': 'Дата' }
+    rename_map = {'Date': 'Дата' }
     data = data.rename(columns=rename_map)
     if "Дата" not in data.columns:
         data = clean_ohlcv_dataframe(data)
@@ -42,10 +42,15 @@ def transform_data(data):
             data[col] = data[col].str.replace(".", "", regex=False).str.replace(",", ".").astype(float)
         else:
             data[col] = data[col].astype(float)
+            
+    try:
+        data = data.drop(columns=["Объём", "Изм. %"], errors='ignore')
+        data = data.drop_duplicates()
+        data = upgrade_dataset(data)
+    except: 
+        data = data.drop_duplicates()
+        data = upgrade_dataset(data)
 
-    data = data.drop(columns=["Объём", "Изм. %"], errors='ignore')
-    data = data.drop_duplicates()
-    data = upgrade_dataset(data)
     return data
 
 def upgrade_dataset(data, mode="train"):

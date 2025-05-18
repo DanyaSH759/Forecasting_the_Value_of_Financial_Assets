@@ -8,14 +8,14 @@ BUCKET_NAME = "my-bucket-main"
 TEST_FILE_KEY = "airflow-test/hello_2.txt"
 
 def list_files():
-    hook = S3Hook(aws_conn_id='reg_s3')
+    hook = S3Hook(aws_conn_id='s3_cloud')
     files = hook.list_keys(bucket_name=BUCKET_NAME)
     print(" Files in bucket:")
     for f in files or []:
         print(f)
 
 def upload_dummy_file():
-    hook = S3Hook(aws_conn_id='reg_s3')
+    hook = S3Hook(aws_conn_id='s3_cloud')
     hook.load_string(
         string_data="Hello from Airflow ",
         key=TEST_FILE_KEY,

@@ -13,6 +13,7 @@ def split_data(data, train_ratio=0.85, val_ratio=0.1, test_ratio=0.05):
     return train, val, test
     
 def return_x_y(data):
+    '''Функция по делению датасета на фичи и таргет'''
 
     x = data.drop(["Цена", "Откр.", "Макс.", "Мин."], axis = 1)
     y = data["Цена"]

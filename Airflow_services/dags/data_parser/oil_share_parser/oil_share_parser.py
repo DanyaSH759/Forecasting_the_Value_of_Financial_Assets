@@ -7,6 +7,7 @@ import logging
 from airflow import DAG
 from airflow.operators.python import PythonOperator
 from airflow.providers.postgres.hooks.postgres import PostgresHook
+import time
 
 CONFIG_PATH = "/opt/airflow/dags/data_parser/oil_share_parser/oil_share_parser.yaml"
 
@@ -40,19 +41,33 @@ def fetch_assets_from_group(group_name):
     with engine.begin() as conn:
         conn.execute("CREATE SCHEMA IF NOT EXISTS oil_share")
 
-    start = '2025-01-01'
+    start = '2016-01-01'
     end_date = pd.Timestamp.today().strftime('%Y-%m-%d')
 
     for ticker, table in tickers.items():
         _LOG.info(f'Загружаю {ticker}')
-        df = yf.download(ticker, start=start, end = end_date, interval="1d", progress=False)
-        
-        if df.empty:
-            print(f" No data for {ticker}")
-            continue
+        for attempt in range(3):
+            try:
+                _LOG.info(f"[{ticker}] Попытка {attempt + 1} из 3")
+                df = yf.download(ticker, start=start, end=end_date, interval="1d", progress=False, timeout=120)
+                if not df.empty:
+                    _LOG.info(f'Скачен датасет за период 2016-2025')
+                    break
+                
+                if not df.empty:
+                    _LOG.info(f"[{ticker}] Данные успешно получены.")
+                else:
+                    _LOG.warning(f"[{ticker}] Пустой DataFrame, retry через 120 сек...")
+
+            except Exception as e:
+                _LOG.warning(f"[{ticker}] Попытка скачивания не удалась: {e}")
+
+            time.sleep(120)
 
         if isinstance(df.columns, pd.MultiIndex):
             df.columns = ['_'.join(col).strip() for col in df.columns.values]
+
+        time.sleep(120)
 
         # Создаём карту переименования под текущий тикер
         rename_map = {

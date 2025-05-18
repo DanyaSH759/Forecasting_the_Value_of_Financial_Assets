@@ -7,3 +7,4 @@ psycopg2-binary==2.9.9
 scikit-learn==1.6.1
 yfinance
 lightgbm
+torch==2.2.2

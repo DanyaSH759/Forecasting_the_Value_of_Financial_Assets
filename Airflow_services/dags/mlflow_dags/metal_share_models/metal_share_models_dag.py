@@ -40,7 +40,10 @@ def create_dag(asset_name, config):
         
         hook = PostgresHook(postgres_conn_id="main_postgres")
         engine = hook.get_sqlalchemy_engine()
-        query = f'SELECT * FROM {config["schema_table"]}'
+        if config["full_learn"]:
+            query = f'SELECT * FROM {config["schema_table"]} WHERE Date >= "2022-01-01"'
+        else:
+            query = f'SELECT * FROM {config["schema_table"]}'
         df = pd.read_sql(query, engine)
 
         _LOG.info(f'Данные загружены из таблицы {config["schema_table"]}')
@@ -80,7 +83,7 @@ def create_dag(asset_name, config):
         prediction = model.predict(X_test)
 
         mlflow.set_tracking_uri("http://mlflow-service:5000")
-        mlflow.set_experiment(config["experiment_name"])
+        mlflow.set_experiment(f'{config["experiment_name"]}_full')
 
         with mlflow.start_run() as run:
             mlflow.log_param("model_type", "GradientBoostingRegressor")

@@ -2,6 +2,8 @@ import pandas as pd
 
 
 def clean_ohlcv_dataframe(df: pd.DataFrame) -> pd.DataFrame:
+    '''Функция по трансформации датасетов с yfinance к удобному формату'''
+    
     # Найти тикер по колонке Close_*
     close_col = [col for col in df.columns if col.startswith('Close_')]
     if not close_col:
@@ -62,6 +64,7 @@ def transform_data(data):
     return data
 
 def upgrade_dataset(data, mode="train"):
+    '''Функция по добавлению фичей в датасет'''
     data = data.copy()
 
     # Фичи по дате

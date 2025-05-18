@@ -10,7 +10,7 @@ s3 = boto3.client(
 )
 
 def download_model_from_s3(asset: str) -> str:
-    model_key = f"all_models/{asset}_model/model.pkl"
+    model_key = f"all_models/{asset}/model.pkl"
     local_model_path = f"/tmp/{asset}_model.pkl"
     os.makedirs(os.path.dirname(local_model_path), exist_ok=True)
 
@@ -21,6 +21,6 @@ def download_model_from_s3(asset: str) -> str:
             Filename=local_model_path
         )
     except Exception as e:
-        raise RuntimeError(f"Ошибка при скачивании модели с S3: {e}")
+        raise RuntimeError(f"Ошибка при скачивании модели с S3: {e}  model_key = {model_key } local_model_path = {local_model_path}")
 
     return local_model_path

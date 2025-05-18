@@ -9,7 +9,6 @@
 
 .
 ├── docker-compose.yml
-├── .env
 ├── fastapi_app
 │   ├── core
 │   │   └── config.py
@@ -18,16 +17,24 @@
 │   ├── Dockerfile
 │   ├── main.py
 │   ├── models
+│   │   ├── auth_request.py
 │   │   └── predict_request.py
 │   ├── requirements.txt
 │   ├── routers
+│   │   ├── auth_login_router.py
+│   │   ├── auth_register_router.py
+│   │   ├── custom_predict_router.py
 │   │   ├── healthcheck_router.py
 │   │   └── predict_router.py
 │   ├── services
+│   │   ├── auth_services.py
+│   │   ├── custom_predict_services.py
+│   │   ├── lstm_model_definitions.py
 │   │   ├── prediction_service.py
 │   │   └── s3_service.py
 │   └── utils
-│       └── dataset_trunsform.py
+│       ├── dataset_trunsform.py
+│       └── lstm_predict.py
 ├── README.md
 └── streamlit_app
     ├── app.py

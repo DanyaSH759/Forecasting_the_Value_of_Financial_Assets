@@ -1,27 +1,29 @@
 {
     "equinor": {
-      "schema_table": "oil_share.equinor",
-      "experiment_name": "equinor_model",
-      "artifact_path": "equinor_model",
-      "s3_key": "all_models/equinor_model/model.pkl",
-      "best_params": {
-        "n_estimators": 148,
-        "learning_rate": 0.022906413238095946,
-        "max_depth": 5,
-        "num_leaves": 73,
-        "min_child_samples": 22}
+        "schema_table": "oil_share.\"Equinor Oslo\"",
+        "experiment_name": "equinor_model",
+        "artifact_path": "Equinor Oslo",
+        "s3_key": "all_models/Equinor Oslo/model.pkl",
+        "best_params": {
+            "n_estimators": 148,
+            "learning_rate": 0.022906413238095946,
+            "max_depth": 5,
+            "num_leaves": 73,
+            "min_child_samples": 22},
+        "full_learn": false
     },
     "petrochina": {
-        "schema_table": "oil_share.petrochina",
+        "schema_table": "oil_share.\"Petrochina HK\"",
         "experiment_name": "petrochina_model",
-        "artifact_path": "petrochina_model",
-        "s3_key": "all_models/petrochina_model/model.pkl",
+        "artifact_path": "Petrochina HK",
+        "s3_key": "all_models/Petrochina HK/model.pkl",
         "best_params": {
             "n_estimators": 153,
             "learning_rate": 0.054276399679638106,
             "max_depth": 7,
             "num_leaves": 136,
-            "min_child_samples":22}
+            "min_child_samples":22},
+        "full_learn": false
         } 
 }
   
